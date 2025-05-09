@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "main.cpp",
+                "tree.cpp",
                 "-o",
                 "${fileDirname}\\..\\build\\${fileBasenameNoExtension}.exe"
             ],

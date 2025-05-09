@@ -1,7 +1,13 @@
-#include "iostream"
+#include <iostream>
+#include <memory>
 
-int main(){
-    std::cout << "hello world";
+#include "headers/tree.h"
 
-    return 0;
+int main() {
+  std::cout << "hello world" << std::endl;
+
+  std::shared_ptr<Person> maria(new Person("maria", WOMAN));
+  maria->printInfo();
+
+  return 0;
 }

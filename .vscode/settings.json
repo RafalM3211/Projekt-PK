@@ -52,7 +52,8 @@
         "variant": "cpp",
         "fstream": "cpp",
         "strstream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "map": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
