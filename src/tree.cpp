@@ -1,7 +1,5 @@
 #include "headers/tree.h"
 
-#include <iostream>
-
 // Tree
 void Tree::addPerson(std::shared_ptr<Person> person) {
   if (!personExists(person->name)) {

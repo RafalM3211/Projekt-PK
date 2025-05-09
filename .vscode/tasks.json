@@ -9,6 +9,7 @@
                 "-g",
                 "main.cpp",
                 "tree.cpp",
+                "fileHandler.cpp",
                 "-o",
                 "${fileDirname}\\..\\build\\${fileBasenameNoExtension}.exe",
                 "-std=c++20"

@@ -1,12 +1,21 @@
 #include <iostream>
 #include <memory>
 
+#include "headers/fileHandler.h"
 #include "headers/tree.h"
 
 int main() {
   std::cout << "hello world" << std::endl << std::endl;
 
   Tree tree;
+
+  FIleHandler fileHandler("../data/tree.txt", "../data/queries.txt",
+                          "../data/output.txt");
+
+  std::string a;
+
+  fileHandler.treeStream >> a;
+  std::cout << a << std::endl;
 
   const std::string parentName = "Maria";
   const std::string childName = "Tomek";
