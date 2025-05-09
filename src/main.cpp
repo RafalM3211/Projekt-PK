@@ -6,8 +6,12 @@
 int main() {
   std::cout << "hello world" << std::endl;
 
+  Tree tree;
+
   std::shared_ptr<Person> maria(new Person("maria", WOMAN));
-  maria->printInfo();
+
+  tree.addPerson(maria);
+  tree.printAllNodes();
 
   return 0;
 }

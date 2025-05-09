@@ -13,10 +13,12 @@ enum Sex { WOMAN, MAN };
 
 class Tree {
  private:
-  Graph _graph;
+  Graph _graph{};
 
  public:
   void addPerson(std::shared_ptr<Person> person);
+
+  void printAllNodes();
 };
 
 class Person {
