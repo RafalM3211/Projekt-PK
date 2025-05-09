@@ -2,11 +2,33 @@
 
 #include <iostream>
 
+// Tree
 void Tree::addPerson(std::shared_ptr<Person> person) {
-  if (!_graph.contains(person->name)) {
+  if (!personExists(person->name)) {
     _graph.insert({person->name, person});
-  }
+  };
 };
+
+bool Tree::personExists(std::string name) { return _graph.contains(name); }
+
+std::shared_ptr<Person> Tree::getPerson(std::string name) {
+  return _graph.at(name);
+}
+
+std::shared_ptr<Person> Tree::getOrCreatePerson(std::string name) {
+  std::shared_ptr<Person> person;
+
+  // todo: function for predicting sex from name
+
+  if (!personExists(name)) {
+    person = std::make_shared<Person>(name, MAN);
+    addPerson(person);
+  } else {
+    person = getPerson(name);
+  }
+
+  return person;
+}
 
 void Tree::printAllNodes() {
   for (const auto node : _graph) {
@@ -15,19 +37,28 @@ void Tree::printAllNodes() {
   }
 }
 
+// Person
+
+void Person::addChild(std::shared_ptr<Person> child) {
+  children.push_back(child);
+}
+void Person::addParent(std::shared_ptr<Person> parent) {
+  parents.push_back(parent);
+}
+
 void Person::printInfo() {
   std::cout << "name: " << name << ", sex: " << sex << std::endl;
-  std::cout << "children: " << std::endl;
+  std::cout << "children: ";
 
   for (const auto child : children) {
     std::cout << child->name << ", ";
   }
 
-  std::cout << std::endl << "parents: " << std::endl;
+  std::cout << std::endl << "parents: ";
 
   for (const auto parent : parents) {
     std::cout << parent->name << ", ";
   }
 
-  std::cout << std::endl;
+  std::cout << std::endl << std::endl;
 };

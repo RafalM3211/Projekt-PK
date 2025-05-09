@@ -17,6 +17,9 @@ class Tree {
 
  public:
   void addPerson(std::shared_ptr<Person> person);
+  bool personExists(std::string name);
+  std::shared_ptr<Person> getPerson(std::string name);
+  std::shared_ptr<Person> getOrCreatePerson(std::string name);
 
   void printAllNodes();
 };
@@ -29,6 +32,9 @@ class Person {
   std::vector<std::shared_ptr<Person>> parents{};
 
   Person(std::string _name, Sex _sex) : name(_name), sex(_sex) {};
+
+  void addChild(std::shared_ptr<Person> child);
+  void addParent(std::shared_ptr<Person> parent);
 
   void printInfo();
 };
