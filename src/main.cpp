@@ -12,25 +12,15 @@ int main() {
   FIleHandler fileHandler("../data/tree.txt", "../data/queries.txt",
                           "../data/output.txt");
 
-  std::string a;
+  std::string parentName, childName;
+  while (fileHandler.treeStream >> parentName >> childName) {
+    std::shared_ptr<Person> parent = tree.getOrCreatePerson(parentName);
 
-  fileHandler.treeStream >> a;
-  std::cout << a << std::endl;
+    std::shared_ptr<Person> child = tree.getOrCreatePerson(childName);
 
-  const std::string parentName = "Maria";
-  const std::string childName = "Tomek";
-
-  // create person
-  // add person to tree
-  // if child does not exist - create child
-  // add child to children list
-  // add person to child's parent list
-
-  std::shared_ptr<Person> parent(new Person(parentName, WOMAN));
-  tree.addPerson(parent);
-  std::shared_ptr<Person> child = tree.getOrCreatePerson(childName);
-  parent->addChild(child);
-  child->addParent(parent);
+    parent->addChild(child);
+    child->addParent(parent);
+  }
 
   tree.printAllNodes();
 
