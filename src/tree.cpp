@@ -19,7 +19,7 @@ std::shared_ptr<Person> Tree::getOrCreatePerson(std::string name) {
   // todo: function for predicting sex from name
 
   if (!personExists(name)) {
-    person = std::make_shared<Person>(name, MAN);
+    person = std::make_shared<Person>(name);
     addPerson(person);
   } else {
     person = getPerson(name);
@@ -37,6 +37,16 @@ void Tree::printAllNodes() {
 
 // Person
 
+Sex Person::getSexFromName(){
+  char lastChar=name[name.length()-1];
+  if(lastChar=='a' && name!="Kuba"){
+    return Sex::WOMAN;
+  }
+  else{
+    return Sex::MAN;
+  }
+}
+
 void Person::addChild(std::shared_ptr<Person> child) {
   children.push_back(child);
 }
@@ -45,7 +55,7 @@ void Person::addParent(std::shared_ptr<Person> parent) {
 }
 
 void Person::printInfo() {
-  std::cout << "name: " << name << ", sex: " << sex << std::endl;
+  std::cout << "name: " << name << ", sex: " << getSexFromName() << std::endl;
   std::cout << "children: ";
 
   for (const auto child : children) {

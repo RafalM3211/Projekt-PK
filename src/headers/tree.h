@@ -12,6 +12,7 @@ using Graph = std::unordered_map<std::string, std::shared_ptr<Person>>;
 
 enum Sex { WOMAN, MAN };
 
+
 class Tree {
  private:
   Graph _graph{};
@@ -26,16 +27,18 @@ class Tree {
 };
 
 class Person {
+ private:
+  Sex getSexFromName();
  public:
-  std::string name;
-  Sex sex;
+  const std::string name;
+  const Sex sex;
   std::vector<std::shared_ptr<Person>> children{};
   std::vector<std::shared_ptr<Person>> parents{};
 
-  Person(std::string _name, Sex _sex) : name(_name), sex(_sex) {};
-
   void addChild(std::shared_ptr<Person> child);
   void addParent(std::shared_ptr<Person> parent);
+  
+  Person(std::string _name) : name(_name), sex(getSexFromName()) {};
 
   void printInfo();
 };
