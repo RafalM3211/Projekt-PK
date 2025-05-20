@@ -24,5 +24,8 @@ int main() {
 
   tree.printAllNodes();
 
+  std::cout << "====" << std::endl;
+  tree.getPerson("Ida")->getDad()->printInfo();
+
   return 0;
 }

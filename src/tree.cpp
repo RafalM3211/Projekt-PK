@@ -54,6 +54,30 @@ void Person::addParent(std::shared_ptr<Person> parent) {
   parents.push_back(parent);
 }
 
+std::shared_ptr<Person> Person::getMom(){
+  std::shared_ptr<Person> mom = nullptr;
+
+  for(const auto parent: parents){
+    if(parent->sex==WOMAN){
+      mom=parent;
+    }
+  }
+
+  return mom;
+}
+
+std::shared_ptr<Person> Person::getDad(){
+  std::shared_ptr<Person> dad = nullptr;
+
+  for(const auto parent: parents){
+    if(parent->sex==MAN){
+      dad=parent;
+    }
+  }
+
+  return dad;
+}
+
 void Person::printInfo() {
   std::cout << "name: " << name << ", sex: " << getSexFromName() << std::endl;
   std::cout << "children: ";
