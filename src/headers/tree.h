@@ -38,10 +38,7 @@ class Person {
 
   void addChild(std::shared_ptr<Person> child);
   void addParent(std::shared_ptr<Person> parent);
-  std::shared_ptr<Person> getMom();
-  std::shared_ptr<Person> getDad();
-  std::shared_ptr<Person> getDauther();
-  std::shared_ptr<Person> getSon();
+  
   
   Person(std::string _name) : name(_name), sex(getSexFromName()) {};
 
