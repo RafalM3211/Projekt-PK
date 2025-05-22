@@ -3,6 +3,7 @@
 
 #include "headers/fileHandler.h"
 #include "headers/tree.h"
+#include "headers/query.h"
 
 int main() {
   std::cout << "hello world" << std::endl << std::endl;
@@ -25,7 +26,9 @@ int main() {
   tree.printAllNodes();
 
   std::cout << "====" << std::endl;
-  tree.getPerson("Ida")->getDad()->printInfo();
+  Query query(tree.getPerson("Piotr"));
+  query.changeCurrentPersonTo(query.getDad());
+  query.getCurrentPerson()->printInfo();
 
   return 0;
 }
