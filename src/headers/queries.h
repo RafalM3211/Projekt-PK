@@ -15,14 +15,14 @@
     -rodzice    done
     -dziadkowie done
     -babcie     done
-    -brat
-    -siostra
-    -rodzenstwo
+    -brat       done
+    -siostra    done
+    -rodzenstwo done
     -kuzynka
     -kuzyn
     -kuzynostwo
-    -wujkowie
-    -ciocie
+    -wujkowie   done
+    -ciocie     done
 */
 
 class Queries: public QueryBase{
@@ -36,6 +36,9 @@ class Queries: public QueryBase{
         std::vector<std::shared_ptr<Person>> resolveSiblings();
         std::vector<std::shared_ptr<Person>> resolveSisters();
         std::vector<std::shared_ptr<Person>> resolveBrothers();
+        std::vector<std::shared_ptr<Person>> resolveAllUncles();
+        std::vector<std::shared_ptr<Person>> resolveUncles();
+        std::vector<std::shared_ptr<Person>> resolveAunts();
 
         Queries(std::shared_ptr<Person> _person): QueryBase(_person){};
 };

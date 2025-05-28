@@ -42,7 +42,7 @@ std::shared_ptr<Person> QueryBase::getOriginalPerson(){
 }
 
 void QueryBase::changeCurrentPersonTo(std::shared_ptr<Person> person){
-    currentPerson = person;
+  currentPerson = person;
 }
 
 
