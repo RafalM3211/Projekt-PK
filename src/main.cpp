@@ -26,12 +26,12 @@ int main() {
   tree.printAllNodes();
 
   std::cout << "====" << std::endl;
-  Query query(tree.getPerson("Piotr"));
+  Queries query(tree.getPerson("Piotr"));
   query.changeCurrentPersonTo(query.getDad());
   query.getCurrentPerson()->printInfo();
 
   std::shared_ptr<Person> person = query.getCurrentPerson();
-  //std::cout << "name: " << performQuery(person, "mama").at(0)->name;
+  std::cout << person->name << " parent: " << performQuery(person, "mama").at(0)->name;
 
   return 0;
 }

@@ -7,7 +7,7 @@
 #include <vector>
 #include <iostream>
 
-class Query {
+class QueryBase {
     private:
         std::shared_ptr<Person> currentPerson;
         std::shared_ptr<Person> originalPerson;
@@ -20,7 +20,7 @@ class Query {
         
         void changeCurrentPersonTo(std::shared_ptr<Person> person);
 
-        Query(std::shared_ptr<Person> _person): currentPerson(_person), originalPerson(_person){}
+        QueryBase(std::shared_ptr<Person> _person): currentPerson(_person), originalPerson(_person){}
 };
 
 /* 
@@ -33,11 +33,18 @@ class Query {
 
 
 /* NIE ROB TAK. zrob osobne funkcje na to a nie klasy. albo funkcje statyczne w klasye ktora dziedziczy z query zeby bylo */
-class MomQuery: public Query{
+/* class MomQuery: public Query{
     public:
         std::vector<std::shared_ptr<Person>> resolve();
 
         MomQuery(std::shared_ptr<Person> _person): Query(_person){}
+}; */
+
+class Queries: public QueryBase{
+    public:
+        std::vector<std::shared_ptr<Person>> resolveMom();
+
+        Queries(std::shared_ptr<Person> _person): QueryBase(_person){};
 };
 
 

@@ -1,7 +1,7 @@
 #include "./headers/query.h"
 
 
-std::shared_ptr<Person> Query::getMom(){
+std::shared_ptr<Person> QueryBase::getMom(){
   std::shared_ptr<Person> mom = nullptr;
 
   for(const auto parent: currentPerson->parents){
@@ -13,7 +13,7 @@ std::shared_ptr<Person> Query::getMom(){
   return mom;
 }
 
-std::shared_ptr<Person> Query::getDad(){
+std::shared_ptr<Person> QueryBase::getDad(){
   std::shared_ptr<Person> dad = nullptr;
 
   for(const auto parent: currentPerson->parents){
@@ -25,38 +25,36 @@ std::shared_ptr<Person> Query::getDad(){
   return dad;
 }
 
-std::vector<std::shared_ptr<Person>> Query::getChildren(){
+std::vector<std::shared_ptr<Person>> QueryBase::getChildren(){
     return currentPerson->children;
 }
 
-std::vector<std::shared_ptr<Person>> Query::getParents(){
+std::vector<std::shared_ptr<Person>> QueryBase::getParents(){
     return currentPerson->parents;
 }
 
-std::shared_ptr<Person> Query::getCurrentPerson(){
+std::shared_ptr<Person> QueryBase::getCurrentPerson(){
     return currentPerson;
 }
 
-void Query::changeCurrentPersonTo(std::shared_ptr<Person> person){
+void QueryBase::changeCurrentPersonTo(std::shared_ptr<Person> person){
     currentPerson = person;
 }
 
 
 
-std::vector<std::shared_ptr<Person>> MomQuery::resolve(){
-  std::vector<std::shared_ptr<Person>> result {};
-  result.push_back(getMom());
-
-  return result;
+std::vector<std::shared_ptr<Person>> Queries::resolveMom(){
+  return { getMom() };
 }
 
 
 std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person, std::string queryString){
   std::vector<std::shared_ptr<Person>> result{};
 
+  Queries query(person);
+
   if (queryString=="mama"){
-    MomQuery query(person);
-    result = query.resolve();
+    result = query.resolveMom();
   }
 
   for(const auto person: result){
