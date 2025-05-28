@@ -30,5 +30,8 @@ int main() {
   query.changeCurrentPersonTo(query.getDad());
   query.getCurrentPerson()->printInfo();
 
+  std::shared_ptr<Person> person = query.getCurrentPerson();
+  //std::cout << "name: " << performQuery(person, "mama").at(0)->name;
+
   return 0;
 }

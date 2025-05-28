@@ -2,6 +2,11 @@
 
 #include "tree.h"
 
+#include <memory>
+#include <string>
+#include <vector>
+#include <iostream>
+
 class Query {
     private:
         std::shared_ptr<Person> currentPerson;
@@ -24,3 +29,19 @@ class Query {
     changeCurrentPersonTo(getMom());
     return currentPerson
 */
+
+
+
+/* NIE ROB TAK. zrob osobne funkcje na to a nie klasy. albo funkcje statyczne w klasye ktora dziedziczy z query zeby bylo */
+class MomQuery: public Query{
+    public:
+        std::vector<std::shared_ptr<Person>> resolve();
+
+        MomQuery(std::shared_ptr<Person> _person): Query(_person){}
+};
+
+
+
+
+
+std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person, std::string queryString);
