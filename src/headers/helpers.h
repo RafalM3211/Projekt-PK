@@ -11,3 +11,5 @@ std::vector<Content> joinVectors(std::vector<Content> v1, std::vector<Content> v
 
     return v1;
 }
+
+void erasePersonFromVector(std::shared_ptr<Person> personToErase, std::vector<std::shared_ptr<Person>>& people);

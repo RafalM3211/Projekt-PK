@@ -40,6 +40,30 @@ std::vector<std::shared_ptr<Person>> Queries::resolveGrandMoms(){
 }
 
 
+std::vector<std::shared_ptr<Person>> Queries::resolveSiblings(){
+  changeCurrentPersonTo(getDad());
+  std::vector<std::shared_ptr<Person>> siblings=getChildren();
+  
+  erasePersonFromVector(getOriginalPerson(), siblings);
+
+  return siblings;
+}
+
+std::vector<std::shared_ptr<Person>> Queries::resolveSisters(){
+  std::vector<std::shared_ptr<Person>> siblings = resolveSiblings();
+
+  return filterBySex(siblings, WOMAN);
+}
+
+std::vector<std::shared_ptr<Person>> Queries::resolveBrothers(){
+  std::vector<std::shared_ptr<Person>> siblings = resolveSiblings();
+
+  return filterBySex(siblings, MAN);
+}
+
+
+
+//===
 
 std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person, std::string queryString){
   std::vector<std::shared_ptr<Person>> result{};
@@ -57,6 +81,15 @@ std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person
   }
   if (queryString=="babcie"){
     result = query.resolveGrandMoms();
+  }
+  if (queryString=="rodzenstwo"){
+    result = query.resolveSiblings();
+  }
+  if (queryString=="siostry"){
+    result = query.resolveSisters();
+  }
+  if (queryString=="bracia"){
+    result = query.resolveBrothers();
   }
 
   std::cout << person->name << " query results: " << std::endl;

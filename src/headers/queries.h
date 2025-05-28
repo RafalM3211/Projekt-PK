@@ -9,22 +9,17 @@
 #include <vector>
 #include <iostream>
 
-/* 
-    np. babcia
-    changeCurrentPersonTo(getMom());
-    changeCurrentPersonTo(getMom());
-    return currentPerson
-*/
-
 /* queries to do:
-    -mama   done
-    -tata
-    -rodzice
-    -dziadkowie
-    -babcie
+    -mama       done
+    -tata       done
+    -rodzice    done
+    -dziadkowie done
+    -babcie     done
     -brat
     -siostra
     -rodzenstwo
+    -kuzynka
+    -kuzyn
     -kuzynostwo
     -wujkowie
     -ciocie
@@ -38,6 +33,9 @@ class Queries: public QueryBase{
         std::vector<std::shared_ptr<Person>> resolveGrandParents();
         std::vector<std::shared_ptr<Person>> resolveGrandDads();
         std::vector<std::shared_ptr<Person>> resolveGrandMoms();
+        std::vector<std::shared_ptr<Person>> resolveSiblings();
+        std::vector<std::shared_ptr<Person>> resolveSisters();
+        std::vector<std::shared_ptr<Person>> resolveBrothers();
 
         Queries(std::shared_ptr<Person> _person): QueryBase(_person){};
 };
