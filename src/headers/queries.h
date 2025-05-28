@@ -36,13 +36,14 @@ class Queries: public QueryBase{
         std::vector<std::shared_ptr<Person>> resolveDad();
         std::vector<std::shared_ptr<Person>> resolveMom();
         std::vector<std::shared_ptr<Person>> resolveGrandParents();
-        //std::vector<std::shared_ptr<Person>> resolveGrandDads();
-       // std::vector<std::shared_ptr<Person>> resolveGrandMoms();
+        std::vector<std::shared_ptr<Person>> resolveGrandDads();
+        std::vector<std::shared_ptr<Person>> resolveGrandMoms();
 
         Queries(std::shared_ptr<Person> _person): QueryBase(_person){};
 };
 
 
-
 std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person, std::string queryString);
+
+std::vector<std::shared_ptr<Person>> filterBySex(std::vector<std::shared_ptr<Person>> people, Sex sex);
 

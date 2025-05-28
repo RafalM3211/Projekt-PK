@@ -27,6 +27,18 @@ std::vector<std::shared_ptr<Person>> Queries::resolveGrandParents(){
   return result;
 }
 
+std::vector<std::shared_ptr<Person>> Queries::resolveGrandDads(){
+  std::vector<std::shared_ptr<Person>> grandParents = resolveGrandParents();
+
+  return filterBySex(grandParents, MAN);
+}
+
+std::vector<std::shared_ptr<Person>> Queries::resolveGrandMoms(){
+  std::vector<std::shared_ptr<Person>> grandParents = resolveGrandParents();
+
+  return filterBySex(grandParents, WOMAN);
+}
+
 
 
 std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person, std::string queryString){
@@ -37,8 +49,14 @@ std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person
   if (queryString=="mama"){
     result = query.resolveMom();
   }
+  if (queryString=="tata"){
+    result = query.resolveDad();
+  }
   if (queryString=="dziadkowie"){
-    result = query.resolveGrandParents();
+    result = query.resolveGrandDads();
+  }
+  if (queryString=="babcie"){
+    result = query.resolveGrandMoms();
   }
 
   std::cout << person->name << " query results: " << std::endl;
@@ -47,4 +65,15 @@ std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person
   }
 
   return result;
+}
+
+std::vector<std::shared_ptr<Person>> filterBySex(std::vector<std::shared_ptr<Person>> people, Sex sex){
+    std::vector<std::shared_ptr<Person>> result{};
+    for(const auto person: people){
+        if(person->sex==sex){
+            result.push_back(person);
+        }
+    }
+
+    return result;
 }

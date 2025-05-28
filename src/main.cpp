@@ -29,7 +29,7 @@ int main() {
   std::cout << "====" << std::endl;
 
   std::shared_ptr<Person> person = tree.getPerson("Tomek");
-  performQuery(person, "dziadkowie");
+  performQuery(person, "babcie");
 
   return 0;
 }
