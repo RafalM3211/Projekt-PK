@@ -4,6 +4,7 @@
 #include "headers/fileHandler.h"
 #include "headers/tree.h"
 #include "headers/query.h"
+#include "headers/queries.h"
 
 int main() {
   std::cout << "hello world" << std::endl << std::endl;
@@ -26,12 +27,9 @@ int main() {
   tree.printAllNodes();
 
   std::cout << "====" << std::endl;
-  Queries query(tree.getPerson("Piotr"));
-  query.changeCurrentPersonTo(query.getDad());
-  query.getCurrentPerson()->printInfo();
 
-  std::shared_ptr<Person> person = query.getCurrentPerson();
-  std::cout << person->name << " parent: " << performQuery(person, "mama").at(0)->name;
+  std::shared_ptr<Person> person = tree.getPerson("Tomek");
+  performQuery(person, "dziadkowie");
 
   return 0;
 }

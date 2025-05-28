@@ -37,29 +37,12 @@ std::shared_ptr<Person> QueryBase::getCurrentPerson(){
     return currentPerson;
 }
 
+std::shared_ptr<Person> QueryBase::getOriginalPerson(){
+    return originalPerson;
+}
+
 void QueryBase::changeCurrentPersonTo(std::shared_ptr<Person> person){
     currentPerson = person;
 }
 
 
-
-std::vector<std::shared_ptr<Person>> Queries::resolveMom(){
-  return { getMom() };
-}
-
-
-std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person, std::string queryString){
-  std::vector<std::shared_ptr<Person>> result{};
-
-  Queries query(person);
-
-  if (queryString=="mama"){
-    result = query.resolveMom();
-  }
-
-  for(const auto person: result){
-    std::cout << person->name << std::endl;
-  }
-
-  return result;
-}

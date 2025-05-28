@@ -11,6 +11,7 @@
                 "tree.cpp",
                 "query.cpp",
                 "fileHandler.cpp",
+                "queries.cpp",
                 "-o",
                 "${fileDirname}\\..\\build\\${fileBasenameNoExtension}.exe",
                 "-std=c++20"
@@ -38,6 +39,7 @@
                 "tree.cpp",
                 "query.cpp",
                 "fileHandler.cpp",
+                "helpers.cpp",
                 "-o",
                 "${fileDirname}\\..\\build\\${fileBasenameNoExtension}.exe",
                 "-std=c++20"
