@@ -36,6 +36,9 @@ class Queries: public QueryBase{
         std::vector<std::shared_ptr<Person>> resolveGrandParents();
         std::vector<std::shared_ptr<Person>> resolveGrandDads();
         std::vector<std::shared_ptr<Person>> resolveGrandMoms();
+        std::vector<std::shared_ptr<Person>> resolveGrandChildren();
+        std::vector<std::shared_ptr<Person>> resolveGrandDauthers();
+        std::vector<std::shared_ptr<Person>> resolveGrandSons();
         std::vector<std::shared_ptr<Person>> resolveSiblings();
         std::vector<std::shared_ptr<Person>> resolveSisters();
         std::vector<std::shared_ptr<Person>> resolveBrothers();
