@@ -6,25 +6,34 @@ std::vector<std::shared_ptr<Person>> Queries::resolveParents(){
 }
 
 std::vector<std::shared_ptr<Person>> Queries::resolveMom(){
+  if(getMom()==nullptr){
+    return {};
+  }
   return { getMom() };
 }
 
 std::vector<std::shared_ptr<Person>> Queries::resolveDad(){
+  if(getDad()==nullptr){
+    return {};
+  }
   return { getDad() };
 }
 
 std::vector<std::shared_ptr<Person>> Queries::resolveGrandParents(){
-  changeCurrentPersonTo(getDad());
-
   std::vector<std::shared_ptr<Person>> result{};
-  result=joinVectors(result, getParents());
 
-  changeCurrentPersonTo(getOriginalPerson());
-
-  changeCurrentPersonTo(getMom());
-  result=joinVectors(result, getParents());
-
-  changeCurrentPersonTo(getOriginalPerson());
+  if(getDad()!=nullptr){
+    changeCurrentPersonTo(getDad());
+    result=joinVectors(result, getParents());
+    changeCurrentPersonTo(getOriginalPerson());
+  }
+  
+  if(getMom()!=nullptr){
+    changeCurrentPersonTo(getMom());
+    result=joinVectors(result, getParents());
+    changeCurrentPersonTo(getOriginalPerson());
+  }
+  
   return result;
 }
 
@@ -42,7 +51,7 @@ std::vector<std::shared_ptr<Person>> Queries::resolveGrandMoms(){
 
 
 std::vector<std::shared_ptr<Person>> Queries::resolveSiblings(){
-  std::shared_ptr<Person> initialPerson=getCurrentPerson();  // takie cos jeszcze w grandParents
+  std::shared_ptr<Person> initialPerson=getCurrentPerson();
 
   if(getDad()==nullptr) return {};
   changeCurrentPersonTo(getDad());
@@ -50,7 +59,7 @@ std::vector<std::shared_ptr<Person>> Queries::resolveSiblings(){
     
   erasePersonFromVector(initialPerson, siblings);
 
-  changeCurrentPersonTo(initialPerson);                                   // takie cos jeszcze w grandParents
+  changeCurrentPersonTo(initialPerson);
   return siblings;
 }
 
@@ -69,21 +78,24 @@ std::vector<std::shared_ptr<Person>> Queries::resolveBrothers(){
 std::vector<std::shared_ptr<Person>> Queries::resolveAllUncles(){
   std::vector<std::shared_ptr<Person>> allUncles{};
 
-  changeCurrentPersonTo(getDad());
-  allUncles=joinVectors(allUncles, resolveSiblings());
-  //std::cout << getCurrentPerson()->name << " dad: " << getDad()->name << " \n";
-  erasePersonFromVector(getCurrentPerson(), allUncles);
+  if(getDad()!=nullptr){
+    changeCurrentPersonTo(getDad());
+    allUncles=joinVectors(allUncles, resolveSiblings());
+    //std::cout << getCurrentPerson()->name << " dad: " << getDad()->name << " \n";
+    erasePersonFromVector(getCurrentPerson(), allUncles);
 
-  changeCurrentPersonTo(getOriginalPerson());
-
-  changeCurrentPersonTo(getMom());
-
-  allUncles=joinVectors(allUncles, resolveSiblings());
-  erasePersonFromVector(getCurrentPerson(), allUncles);
+    changeCurrentPersonTo(getOriginalPerson());
+  }
   
-  changeCurrentPersonTo(getOriginalPerson());
- 
+  if(getMom()!=nullptr){
+    changeCurrentPersonTo(getMom());
 
+    allUncles=joinVectors(allUncles, resolveSiblings());
+    erasePersonFromVector(getCurrentPerson(), allUncles);
+    
+    changeCurrentPersonTo(getOriginalPerson());
+  }
+  
   return allUncles;
 }
 
