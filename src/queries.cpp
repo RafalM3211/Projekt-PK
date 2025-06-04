@@ -71,7 +71,7 @@ std::vector<std::shared_ptr<Person>> Queries::resolveAllUncles(){
 
   changeCurrentPersonTo(getDad());
   allUncles=joinVectors(allUncles, resolveSiblings());
-  std::cout << getCurrentPerson()->name << " dad: " << getDad()->name << " \n";
+  //std::cout << getCurrentPerson()->name << " dad: " << getDad()->name << " \n";
   erasePersonFromVector(getCurrentPerson(), allUncles);
 
   changeCurrentPersonTo(getOriginalPerson());
@@ -97,6 +97,30 @@ std::vector<std::shared_ptr<Person>> Queries::resolveAunts(){
   std::vector<std::shared_ptr<Person>> allUncles = resolveAllUncles();
 
   return filterBySex(allUncles, WOMAN);
+}
+
+std::vector<std::shared_ptr<Person>> Queries::resolveCousinship(){
+  std::vector<std::shared_ptr<Person>> uncles = resolveUncles();
+
+  std::vector<std::shared_ptr<Person>> cousins{};
+
+  for(const auto uncle: uncles){
+    cousins = joinVectors(cousins, uncle->children);
+  }
+
+  return cousins;
+}
+
+std::vector<std::shared_ptr<Person>> Queries::resolveFemaleCousins(){
+  std::vector<std::shared_ptr<Person>> allCousins = resolveCousinship();
+
+  return filterBySex(allCousins, WOMAN);
+}
+
+std::vector<std::shared_ptr<Person>> Queries::resolveMaleCousins(){
+  std::vector<std::shared_ptr<Person>> allCousins = resolveCousinship();
+
+  return filterBySex(allCousins, MAN);
 }
 
 
@@ -133,6 +157,15 @@ std::vector<std::shared_ptr<Person>> performQuery(std::shared_ptr<Person> person
   }
   if (queryString=="ciotki"){
     result = query.resolveAunts();
+  }
+  if (queryString=="kuzynostwo"){
+    result = query.resolveCousinship();
+  }
+  if (queryString=="kuzynki"){
+    result = query.resolveFemaleCousins();
+  }
+  if (queryString=="kuzyni"){
+    result = query.resolveMaleCousins();
   }
 
   std::cout << person->name << " query results: " << std::endl;
