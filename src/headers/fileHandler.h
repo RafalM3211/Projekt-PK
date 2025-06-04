@@ -10,4 +10,6 @@ class FIleHandler {
 
   FIleHandler(std::string treeFile, std::string queriesFile,
               std::string outputFile);
+
+  ~FIleHandler();
 };

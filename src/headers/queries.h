@@ -15,12 +15,15 @@
     -rodzice    done
     -dziadkowie done
     -babcie     done
+    -wnukostwoxD
+    -wnuki
+    -wnuczki
     -brat       done
     -siostra    done
     -rodzenstwo done
-    -kuzynka
-    -kuzyn
-    -kuzynostwo
+    -kuzynka    done
+    -kuzyn      done
+    -kuzynostwo done
     -wujkowie   done
     -ciocie     done
 */
