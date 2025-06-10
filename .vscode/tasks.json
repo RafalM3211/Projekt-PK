@@ -13,6 +13,7 @@
                 "fileHandler.cpp",
                 "queries.cpp",
                 "helpers.cpp",
+                "cli.cpp",
                 "-o",
                 "${fileDirname}\\..\\build\\${fileBasenameNoExtension}.exe",
                 "-std=c++20"

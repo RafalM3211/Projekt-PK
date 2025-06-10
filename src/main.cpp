@@ -6,14 +6,15 @@
 #include "headers/tree.h"
 #include "headers/query.h"
 #include "headers/queries.h"
+#include "headers/cli.h"
 
-int main() {
-  std::cout << "hello world" << std::endl << std::endl;
-
+int main(int argc, char* argv[]) {
   Tree tree;
 
-  FIleHandler fileHandler("../data/tree.txt", "../data/queries.txt",
-                          "../data/output.txt");
+  CliArgs* CliArgs = parseCliArguments(argc, argv);
+
+  FIleHandler fileHandler(CliArgs->treeFilePath, CliArgs->queriesFilePath,
+                          CliArgs->outputFilePath);
 
   std::string parentName, childName;
   while (fileHandler.treeStream >> parentName >> childName) {
@@ -24,10 +25,6 @@ int main() {
     parent->addChild(child);
     child->addParent(parent);
   }
-
-  tree.printAllNodes();
-
-  std::cout << "====" << std::endl;
 
   std::string personName, queryString;
   while (fileHandler.queriesStream >> personName >> queryString){
