@@ -35,11 +35,11 @@ class Person {
   std::vector<std::shared_ptr<Person>> children{};
   std::vector<std::shared_ptr<Person>> parents{};
 
-
   void addChild(std::shared_ptr<Person> child);
   void addParent(std::shared_ptr<Person> parent);
   
-  
+  bool operator==(std::shared_ptr<Person> person);
+
   Person(std::string _name) : name(_name), sex(getSexFromName()) {};
 
   void printInfo();

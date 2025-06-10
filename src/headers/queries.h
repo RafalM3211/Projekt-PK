@@ -15,9 +15,9 @@
     -rodzice    done
     -dziadkowie done
     -babcie     done
-    -wnukostwoxD
-    -wnuki
-    -wnuczki
+    -wnukostwoxDdone
+    -wnuki      done
+    -wnuczki    done
     -brat       done
     -siostra    done
     -rodzenstwo done

@@ -55,6 +55,10 @@ void Person::addParent(std::shared_ptr<Person> parent) {
 }
 
 
+bool Person::operator==(std::shared_ptr<Person> person){
+  return person==this;
+}
+
 
 void Person::printInfo() {
   std::cout << "name: " << name << ", sex: " << getSexFromName() << std::endl;
