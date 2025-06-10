@@ -12,6 +12,11 @@ int main(int argc, char* argv[]) {
   Tree tree;
 
   CliArgs* CliArgs = parseCliArguments(argc, argv);
+  if(CliArgs->treeFilePath == "" || CliArgs->queriesFilePath == "" || CliArgs->outputFilePath == ""){
+    std::cout << "specify all necessary arguments" << std::endl;
+
+    return 0;
+  }
 
   FIleHandler fileHandler(CliArgs->treeFilePath, CliArgs->queriesFilePath,
                           CliArgs->outputFilePath);
