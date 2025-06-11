@@ -22,6 +22,9 @@ class Tree {
   bool personExists(std::string name);
   std::shared_ptr<Person> getPerson(std::string name);
   std::shared_ptr<Person> getOrCreatePerson(std::string name);
+  // operator indeksowania [] 
+
+  std::shared_ptr<Person> operator[](std::string name);
 
   void printAllNodes();
 };
@@ -34,6 +37,8 @@ class Person {
   const Sex sex;
   std::vector<std::shared_ptr<Person>> children{};
   std::vector<std::shared_ptr<Person>> parents{};
+
+
 
   void addChild(std::shared_ptr<Person> child);
   void addParent(std::shared_ptr<Person> parent);

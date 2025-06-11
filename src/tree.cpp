@@ -35,6 +35,11 @@ void Tree::printAllNodes() {
   }
 }
 
+
+std::shared_ptr<Person> Tree::operator[](std::string name){
+  return getPerson(name);
+}
+
 // Person
 
 Sex Person::getSexFromName(){

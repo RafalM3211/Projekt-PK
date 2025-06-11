@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
   CliArgs* CliArgs = parseCliArguments(argc, argv);
   if(CliArgs->treeFilePath == "" || CliArgs->queriesFilePath == "" || CliArgs->outputFilePath == ""){
-    std::cout << "specify all necessary arguments" << std::endl;
+    std::cout << "Please specify all necessary arguments" << std::endl;
 
     return 0;
   }
